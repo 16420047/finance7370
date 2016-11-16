@@ -1,0 +1,41 @@
+<!--index.ejs-->
+
+
+<div class="row;show-left">
+  <div class="col-sm-6 col-md-12">
+
+    <div class="panel panel-default">
+     <div class="panel-heading"  align="left">
+     <a href="http://localhost:1337/property/view/<%=property.id%>"><%=property.name%></a></div>
+     
+     <div class="col-md-4">
+      <img alt="<%=property.name%>" src="<%=property.URLimg%>" style="height:385px;width:385px;margin:15px;object-fit:cover;" class="img-rounded"/>
+      </div>
+
+
+        <div align="right">
+         <ul class="list-group" style="width:50%; margin:20px; border:none; text-align:left">
+            <li class="list-group-item"><label style="font-weight:bold">Estate:</label> <%=property.locate%></li>
+            <li class="list-group-item"><label style="font-weight:bold">Gross Area:</label><%=property.area%>sq feet</li>
+            <li class="list-group-item"><label style="font-weight:bold">Rent:</label>$<%=property.rent%></li>
+            <li class="list-group-item"><label style="font-weight:bold">Bedrooms:</label> <%=property.Bedrooms%></li>
+            <li class="list-group-item"><label style="font-weight:bold">Expected Tenants:</label> <%=property.ExpectedTenants%></li>
+            <li class="list-group-item"><label style="font-weight:bold">Created:</label> <%=property.createdAt%></li>
+            <li class="list-group-item"><label style="font-weight:bold">Updated:</label> <%=property.updatedAt%></li>
+          </ul>
+          
+          <% if ((property.ownerid!=userid) && (userrole!=1)){ %>
+              <div align="left" style=" margin:30px;" >
+                <a class="btn btn-default col-sm-offset-2" href="http://localhost:1337/user/declare/<%=property.id%>">Declare Interest</a>
+              </div>
+          <% } else { %>
+              <div align="left" style=" margin:30px;" >
+                <a class="btn btn-default col-sm-offset-2" href="#">Forbidden</a>
+              </div>
+          <% }%>
+        </div>
+     </div>
+
+  </div>
+</div>
+

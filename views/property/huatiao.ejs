@@ -1,0 +1,91 @@
+<div class="container">
+
+<div id="slider"></div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div id="slider"></div>
+
+<lable id="hfidh-1">jkjlkl</lable> <--->
+
+<input type="text" class="form-control" id="hfidh-1"  name="area2" placeholder="Password">
+<input type="text" class="form-control" id="hfidh-2"  name="area1" placeholder="Password">
+
+
+<input type="text" class="form-control" id="hfidh-1"  name="area2" placeholder="Password">
+<input type="text" class="form-control" id="hfidh-2"  name="area1" placeholder="Password">
+
+
+
+
+
+
+
+<script>
+var slider = document.getElementById('slider');
+
+noUiSlider.create(slider, {
+	start: [20, 80],
+	connect: true,
+	tooltips: [true, wNumb({ decimals: 1 })],
+	range: {
+		'min': 0,
+		'max': 100
+	}
+});
+</script>
+
+
+
+<script type="nouislider.min.js">
+var slider = docment.getElementById('slider');
+
+noUiSlider.create(slider, {
+    start: [0, 2000],
+    connect: true,
+    range: {
+        'min': 0,
+        'max': 2000
+    },
+    margin:1,
+    step:1,
+});    
+var valuesDivs = [
+    document.getElementById('range-value-1'),
+    document.getElementById('range-value-2'),
+    document.getElementById('range-value-3'),
+    document.getElementById('range-value-4')
+];
+
+var diffDivs = [
+    document.getElementById('range-diff-1'),
+    document.getElementById('range-diff-2'),
+    document.getElementById('range-diff-3')
+];
+
+// When the slider value changes, update the input and span
+range.noUiSlider.on('update', function( values, handle ) {
+    valuesDivs[handle].innerHTML = values[handle];
+    diffDivs[0].innerHTML = values[1] - values[0];
+    diffDivs[1].innerHTML = values[2] - values[1];
+    diffDivs[2].innerHTML = values[3] - values[2];
+});
+}
+
+
+</script>
+<!-- In <body> -->
+<script src="nouislider.min.js"></script>

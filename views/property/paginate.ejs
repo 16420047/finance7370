@@ -1,0 +1,153 @@
+<div class="container">
+
+<!--left-->
+
+  <div class="row">
+    <div class="col-md-6">
+    <% property.forEach(function(model) { %>
+          <div class="col-md-12" >
+          <div class="form-gourp" style="margin:5px;">
+            <div class="panel panel-default" style="margin:0 20px 0px 20px" align="left">
+              <div class="panel-heading"><a href="http://localhost:1337/property/view/<%=model.id%>"><%=model.name%></a></div>
+              <div class="panel-body">
+                <div class="row">
+                  <div class="col-md-4">
+                    <img alt="<%=model.name%>" src="<%=model.URLimg%>" style="height:135px;width:135px;object-fit:cover;" class="img-rounded"/>
+                  </div>
+                  <div class="col-md-8" >
+                          <table class="table table-bordered">
+                              <tr><td><b>Estate: </b><%=model.locate%></td></tr>
+                                <tr><td><b>Gross Area:</b> <%=model.area%></td></tr>
+                                <tr><td><b>Rent: </b><%=model.rent%></td></tr>
+                            </table>
+                      </div>
+                  </div>
+                </div>
+            </div>
+          </div>
+          </div>
+      <% }); %>
+    </div>
+
+
+
+<!--right-->
+
+<div class="col-md-6 col-sm-4" style="padding:30px">
+  <nav>
+      <ul class="pagination">
+      
+                
+           <li>
+              <a href="/property/paginate/?page=<%=Math.max(current-1, 1)%>" aria-label="Previous">
+              <span aria-hidden="true">&laquo;</span>
+              </a>
+          </li>
+
+          <%for(i=1;i<=count;i++){%>
+                
+              <li><a href="/property/paginate/?page=<%=i%>"> <%=i%> </a></li>
+              
+          <%}%>
+      
+         <li>
+              <a href="/property/paginate/?page=<%=Math.min(current*1+1, count)%>" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+              </a>
+          </li>
+      </ul> 
+  </nav>
+
+
+  <!--slider-->
+  <h2 >Property Search</h2>
+  <form class="form-horizontal" action="/property/paginate/1" method="POST" >
+    <div class="form-group">
+      <label for="inputEstate" class="col-sm-2 control-label">Estate</label>
+      <div class="col-sm-10">
+        <select class="form-control" name="estate" id="inputEstate">
+          <option value="">Select one estate:</option>
+          <option value="Tin Ma Court">Tin Ma Court</option>
+          <option value="City One Shatin">City One Shatin</option>
+          <option value="Festival City">Festival City</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputBedrooms" class="col-sm-2 control-label">Bedrooms</label>
+      <div class="col-sm-10">
+        <input type="number" class="form-control" min="1" id="inputBedrooms" name="bedrooms">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Area</label>
+      <div class="col-sm-10">
+        <div id="area"></div>
+        <input type="hidden" class="form-control" id="slider-snap-value-lower1" name="area1" value="0">
+        <input type="hidden" class="form-control" id="slider-snap-value-upper1" name="area2" value="2000">
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-sm-2 control-label">Rent</label>
+      <div class="col-sm-10">
+        <div id="rent" style="margin-top:20px;"></div>
+        <input type="hidden" class="form-control" id="slider-snap-value-lower2" name="rent1" value="0">
+        <input type="hidden" class="form-control" id="slider-snap-value-upper2" name="rent2" value="30000">
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <div class="col-sm-offset-2 col-sm-10">
+        <button type="submit" class="btn btn-default">Search</button>
+      </div>
+    </div>
+  </form>
+
+</div>
+
+
+</div>
+
+
+<script>
+var slider1 = document.getElementById('area');
+var inputArea1 = document.getElementById('slider-snap-value-lower1');
+var inputArea2 = document.getElementById('slider-snap-value-upper1');
+var inputAreaS = [inputArea1, inputArea2];
+
+noUiSlider.create(slider1, {
+  start: [0, 2000],
+  connect: true,
+  tooltips:[true, wNumb({ decimals: 0 })],
+  range: {
+    'min': 0,
+    'max': 2000
+  }
+});
+
+slider1.noUiSlider.on('update', function( values, handle ) {
+  inputAreaS[handle].value = values[handle];
+});
+</script>
+
+
+<script>
+var slider2 = document.getElementById('rent');
+var inputRent1 = document.getElementById('slider-snap-value-lower2');
+var inputRent2 = document.getElementById('slider-snap-value-upper2');
+var inputRentS= [inputRent1, inputRent2];
+
+noUiSlider.create(slider2, {
+  start: [0, 30000],
+  connect: true,
+  tooltips:[true, wNumb({ decimals: 0 })],
+  range: {
+    'min': 0,
+    'max': 30000
+  }
+});
+
+slider2.noUiSlider.on('update', function( values, handle ) {
+  inputRentS[handle].value = values[handle];
+});
+</script>

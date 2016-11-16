@@ -1,0 +1,21 @@
+
+
+<div class="row;show-left">
+<% property.forEach( function(model) { %>
+  <div class="col-sm-6 col-md-6">
+    <div class="panel panel-default"><div class="panel-heading" style="margin:0 20px 0px 20px" align="left"><a href="http://localhost:1337/property/view/<%=model.id%>">
+    <%=model.name%></a></div>
+    <img src="<%=model.URLimg%>" alt="<%=model.name%>" style="height:135px;width:135px;margin:18px;object-fit:cover;" align="left" class="img-rounded">
+        <div align="right">
+         <ul class="list-group" style="width:50%; margin:20px; border:none; text-align:left">
+            <li class="list-group-item"><label style="font-weight:bold">Estate:</label> <%=model.locate%></li>
+            <li class="list-group-item"><label style="font-weight:bold">Gross Area:</label> <%=model.area%>sq feet</li>
+            <li class="list-group-item"><label style="font-weight:bold">Rent:</label>$<%=model.rent%></li>
+          </ul>
+        </div>
+     </div>
+  </div>
+  <% }); %>
+</div>
+</div>
+
